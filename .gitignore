@@ -5,7 +5,7 @@ __pycache__/
 .vscode
 # C extensions
 *.so
-
+.insurance-venv
 # Distribution / packaging
 datasets/
 images/
