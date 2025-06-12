@@ -32,6 +32,7 @@ def insurance_statistics(df):
             return {}
         
         stat = df.describe()
+        print
         print("Insurance Data Statistics:")
         print(stat)
         print("\n =================================================")
@@ -49,3 +50,84 @@ def insurance_statistics(df):
         print(data_types)
         print("\n =================================================")
         
+def check_duplicates(df):
+    """
+    Check for duplicate entries in the DataFrame.
+    
+    Parameters:
+    df (pd.DataFrame): DataFrame to check for duplicates.
+    
+    Returns:
+    int: Number of duplicate rows.
+    """
+    if df is None:
+        return 0
+    
+    duplicates = df.duplicated().sum()
+    print(f"Number of duplicate rows: {duplicates}")
+    df = df.drop_duplicates(inplace=True)
+    print("Duplicates removed.")
+    # Optionally, return the number of duplicates
+    
+    return duplicates
+
+def check_null_values(df):
+    """
+    Check for null values in the DataFrame.
+    
+    Parameters:
+    df (pd.DataFrame): DataFrame to check for null values.
+    
+    Returns:
+    pd.Series: Series containing the count of null values for each column.
+    """
+    if df is None:
+        return pd.Series()
+    
+    null_counts = df.isnull().sum()
+    null_percentage = (null_counts / len(df)) * 100
+    print("Null values in each column (with percentage):")
+    print(null_counts[null_counts > 0])
+    print(null_percentage[null_percentage > 0])
+    print("\n =================================================")
+    print("Total null values in the DataFrame:", null_counts.sum())
+    print("\n =================================================")
+    print("Percentage of null values in each column:")
+    print(null_percentage[null_percentage > 0])
+    print("\n =================================================")
+    print("Total null values in the DataFrame:", null_counts.sum())
+    print("\n =================================================")
+    print("Total percentage of null values in the DataFrame:", null_percentage.sum())
+    print("\n =================================================")   
+    print("Null values in each column:")
+    print(null_counts[null_counts > 0])
+    print("\n =================================================")
+
+def handling_null_values(df):
+    """
+    Handle null values in the DataFrame.
+    
+    Parameters:
+    df (pd.DataFrame): DataFrame to handle null values.
+    
+    Returns:
+    pd.DataFrame: DataFrame with null values handled.
+    """
+    if df is None:
+        return df
+    
+    # Fill numeric columns with mean
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].mean())
+    
+    # Fill categorical columns with mode
+    categorical_cols = df.select_dtypes(include=['object']).columns
+    for col in categorical_cols:
+        if not df[col].mode().empty:
+            # Fill with mode only if mode exists
+            if df[col].mode()[0] is not None:   
+              df[col] = df[col].fillna(df[col].mode()[0])
+    
+    print("Null values handled.")
+    
+    return df
