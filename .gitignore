@@ -8,7 +8,9 @@ __pycache__/
 .insurance-venv
 # Distribution / packaging
 datasets/.gitignore
-=======
+
+.dvc/cache/
+
 datasets/
 images/
 .Python
