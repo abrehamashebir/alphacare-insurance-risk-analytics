@@ -195,3 +195,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignoredatasets/
 images/
+datasets/MachineLearningRating_v3.txt
+datasets/insurance_data_cleaned.csv
