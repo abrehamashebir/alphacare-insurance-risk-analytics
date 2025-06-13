@@ -2,12 +2,14 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.vscode
 # C extensions
 *.so
-
+.insurance-venv
 # Distribution / packaging
 datasets/.gitignore
+=======
+datasets/
 images/
 .Python
 build/
