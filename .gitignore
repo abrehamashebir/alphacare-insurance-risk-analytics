@@ -7,7 +7,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-datasets/
 images/
 .Python
 build/
@@ -196,6 +195,4 @@ cython_debug/
 .cursorindexingignoredatasets/
 images/
 datasets/MachineLearningRating_v3.txt
-datasets/insurance_data_cleaned.csv
 datasets/MachineLearningRating_v3.txt
-datasets/insurance_data_cleaned.csv
